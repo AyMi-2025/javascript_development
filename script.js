@@ -35,6 +35,73 @@ console.log(a%b)
 
 // Alert , Confirm and Prompt
 
-alert('This is an alert message')
-confirm('Are you sure?')
-prompt('What is your name?')
+// alert('This is an alert message')
+// confirm('Are you sure?')
+// prompt('What is your name?') 
+
+// Type Coercion
+
+// Implict
+// Explicit
+
+
+//Binary Operators
+
+// Arthimatic - (+,-,*, %, /)
+// Assignment - (a+ = 1, a*= 1)
+// Comparsion - (<, > , ==)
+// Logical
+// Increment & Decrements
+
+// Increments
+
+var b = 10
+b++
+console.log(b)
+
+// Pre Increments
+
+var c = 10
+console.log(c++)
+console.log(c)
+
+// Post Increments
+
+var d = 10
+console.log(++d)
+console.log(d)
+
+var e = "END"
+console.log(e)
+
+//if-else
+
+var n = 10
+if (n = 10){
+    console.log("Hello");
+}
+
+// Truthy and Falsy
+
+// Only 6 :- false, 0 , " " , null , undefined , NaN
+
+//Switch
+// Many Possible values
+
+
+// switch(marks){
+//     case marks > 80:
+//         console.log("Hello");
+//         break;
+//         .
+//         .
+//         .
+//         .
+//         .
+//         .
+//         .
+//         .
+//     default: 
+// }
+
+
