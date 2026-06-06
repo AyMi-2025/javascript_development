@@ -3,7 +3,13 @@ console.warn('warning msg')
 console.error('error msg')
 console.table(['Ayan', 18, 'Kolkata'])
 
-// Operations
+
+
+
+/* =================================================
+        Operations 
+   ================================================= */
+
 
 var a
 a=10
@@ -17,7 +23,12 @@ console.log(a*b)
 console.log(a/b)
 console.log(a%b)
 
-// Primitive Data Types
+
+
+
+/* =================================================
+          Primitive Data Types
+   ================================================= */
 
 //Number
 //Boolean
@@ -26,26 +37,45 @@ console.log(a%b)
 //Null
 //Symbol
 
-// Non-Primitive Data Types (Reference)
+
+
+
+/* =================================================
+         Non-Primitive Data Types (Reference)
+   ================================================= */
+
 
 // Object
 // Array
 // Function
 
 
-// Alert , Confirm and Prompt
+
+
+/* =================================================
+           Alert , Confirm and Prompt
+   ================================================= */
 
 // alert('This is an alert message')
 // confirm('Are you sure?')
 // prompt('What is your name?') 
 
-// Type Coercion
+
+
+
+/* =================================================
+          Type Coercion 
+   ================================================= */
 
 // Implict
 // Explicit
 
 
-//Binary Operators
+
+
+/* =================================================
+          Binary Operators
+   ================================================= */
 
 // Arthimatic - (+,-,*, %, /)
 // Assignment - (a+ = 1, a*= 1)
@@ -53,19 +83,33 @@ console.log(a%b)
 // Logical
 // Increment & Decrements
 
-// Increments
+
+
+
+/* =================================================
+          Increments
+   ================================================= */
 
 var b = 10
 b++
 console.log(b)
 
-// Pre Increments
+
+
+/* =================================================
+          Pre Increments
+   ================================================= */
 
 var c = 10
 console.log(c++)
 console.log(c)
 
-// Post Increments
+
+
+
+/* =================================================
+          Post Increments 
+   ================================================= */
 
 var d = 10
 console.log(++d)
@@ -74,19 +118,30 @@ console.log(d)
 var e = "END"
 console.log(e)
 
-//if-else
+
+
+/* =================================================
+          if-else
+   ================================================= */
 
 var n = 10
 if (n = 10){
     console.log("Hello");
 }
 
-// Truthy and Falsy
+
+/* =================================================
+          Truthy and Falsy
+   ================================================= */
 
 // Only 6 :- false, 0 , " " , null , undefined , NaN
 
-//Switch
-// Many Possible values
+
+
+/* =================================================
+          Switch
+           Many Possible values
+   ================================================= */
 
 
 // switch(marks){
@@ -103,5 +158,48 @@ if (n = 10){
 //         .
 //     default: 
 // }
+
+
+
+/* =================================================
+          While loops 
+   ================================================= */
+var g = 6
+
+while(g<=5){
+    console.log("I will Practice");
+    a++    
+}
+
+
+
+/* =================================================
+          Do & While loops 
+   ================================================= */
+
+var j = 6
+
+do{
+    console.log("Hello")
+    a++
+
+}while(j<=5)
+
+    
+
+
+/* =================================================
+          3 Types od Creating Variables 
+   ================================================= */
+
+// var - Value Updatable , Function Scoped
+// let - Value Updatable , Block Scoped
+// const - No Value Updatable , Block Scoped
+
+
+
+
+
+
 
 
