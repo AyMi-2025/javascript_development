@@ -224,11 +224,59 @@ console.log(s.charAt(0));           // "H"
 console.log(s[0]);                  // "H" (also works)
 
 
+/* =================================================
+          Functions 
+   ================================================= */
 
+function greet(){
+   console.log("Good Morning User");
+}
 
+greet()
 
+/* =================================================
+          Types of Functions 
+   ================================================= */
 
+// Function Declaration
+function a1(){
+   console.log('hello guys !!');
+}
 
+// Function Expression 
+var a = function(){
+   console.log("Helllo !!");
+}
+
+// Arrow Function
+var c1 = ()=>{
+   console.log("Hello !!!");
+}
+ // One Liner
+ var d1 = a => console.log("Hellllo!!");
+
+ /* =================================================
+      Immidiately Invoked Function Expression (IIFE)
+   ================================================= */
+
+   (function(){
+      console.log("IIFE STATEMENT")
+   })()
+
+/* =================================================
+          Return
+   ================================================= */
+
+function add(a,b){
+   return a+b
+}
+
+/* =================================================
+          Pure and Inpure fraction
+   ================================================= */
+
+// Pure Fraction ----> Same Input - Same Output
+// Impure Fraction ----> Same Input - Different Output
 
 
 
