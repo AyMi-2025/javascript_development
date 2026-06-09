@@ -3,13 +3,9 @@ console.warn('warning msg')
 console.error('error msg')
 console.table(['Ayan', 18, 'Kolkata'])
 
-
-
-
 /* =================================================
         Operations 
    ================================================= */
-
 
 var a
 a=10
@@ -23,9 +19,6 @@ console.log(a*b)
 console.log(a/b)
 console.log(a%b)
 
-
-
-
 /* =================================================
           Primitive Data Types
    ================================================= */
@@ -37,9 +30,6 @@ console.log(a%b)
 //Null
 //Symbol
 
-
-
-
 /* =================================================
          Non-Primitive Data Types (Reference)
    ================================================= */
@@ -49,9 +39,6 @@ console.log(a%b)
 // Array
 // Function
 
-
-
-
 /* =================================================
            Alert , Confirm and Prompt
    ================================================= */
@@ -60,17 +47,12 @@ console.log(a%b)
 // confirm('Are you sure?')
 // prompt('What is your name?') 
 
-
-
-
 /* =================================================
           Type Coercion 
    ================================================= */
 
 // Implict
 // Explicit
-
-
 
 
 /* =================================================
@@ -94,8 +76,6 @@ var b = 10
 b++
 console.log(b)
 
-
-
 /* =================================================
           Pre Increments
    ================================================= */
@@ -103,9 +83,6 @@ console.log(b)
 var c = 10
 console.log(c++)
 console.log(c)
-
-
-
 
 /* =================================================
           Post Increments 
@@ -119,7 +96,6 @@ var e = "END"
 console.log(e)
 
 
-
 /* =================================================
           if-else
    ================================================= */
@@ -129,13 +105,11 @@ if (n = 10){
     console.log("Hello");
 }
 
-
 /* =================================================
           Truthy and Falsy
    ================================================= */
 
 // Only 6 :- false, 0 , " " , null , undefined , NaN
-
 
 
 /* =================================================
@@ -158,8 +132,6 @@ if (n = 10){
 //         .
 //     default: 
 // }
-
-
 
 /* =================================================
           While loops 
@@ -278,6 +250,38 @@ function add(a,b){
 // Pure Fraction ----> Same Input - Same Output
 // Impure Fraction ----> Same Input - Different Output
 
+
+/* =================================================
+          Arrays
+   ================================================= */
+ 
+var arr1 = [10,20,30,40,50]  // Array
+console.log(arr1[3])  //Op:- 40
+
+// Updating an Array ----------------------------------
+arr1[4] = 90 // Updated the index 4 to 90
+
+// Length of an Array --------------------------------
+console.log(arr1.length)
+
+// Push ----------------------------------------------
+arr1.push(99) // last me add karta hai
+
+// Pop ----------------------------------------------
+arr1.pop() // last me se delete karta hai
+
+// Unshift -----------------------------------------
+arr1.unshift(1) // first mein add karta hai
+
+//Shift --------------------------------------------
+arr1.shift() // first mein delete karta hai 
+
+// Splice ------------------------------------------
+// arr1.splice(start_index , delete_count)
+arr1.splice(1,2)
+
+// arr1.splice(start_index , delete_count , new_items)
+arr1.splice(1,2,33)
 
 
 
