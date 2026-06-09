@@ -283,6 +283,13 @@ arr1.splice(1,2)
 // arr1.splice(start_index , delete_count , new_items)
 arr1.splice(1,2,33)
 
+// Concat
+arr.concat(arr2)
+
+// Join
+arr.join('-')
+
+
 
 
 
