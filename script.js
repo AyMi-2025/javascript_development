@@ -283,14 +283,53 @@ arr1.splice(1,2)
 // arr1.splice(start_index , delete_count , new_items)
 arr1.splice(1,2,33)
 
-// Concat
+// Concat ------------------------------------------
 arr.concat(arr2)
 
-// Join
+// Join -------------------------------------------
 arr.join('-')
 
+// forEach -------------------------------------------
+let nums = [1, 2, 3];
+nums.forEach(function(n) {
+    console.log(n * 2);
+});
+// 2, 4, 6
 
+// map ----------------------------------------------
+let nums = [1, 2, 3, 4];
+let doubled = nums.map(n => n * 2);
+console.log(doubled);   // [2, 4, 6, 8]
+console.log(nums);      // [1, 2, 3, 4] ← unchanged
 
+// filter ------------------------------------------
+let nums = [1, 2, 3, 4, 5, 6];
+let evens = nums.filter(n => n % 2 === 0);
+console.log(evens);   // [2, 4, 6]
 
+// reduce -------------------------------------------
+let nums = [1, 2, 3, 4];
+let sum = nums.reduce((acc, n) => acc + n, 0);
+console.log(sum);   // 10
+
+// find -------------------------------------------
+let users = [{name: "A", age: 20}, {name: "B", age: 30}];
+let user = users.find(u => u.age > 25);
+console.log(user);   // {name: "B", age: 30}
+
+// findIndex ---------------------------------------
+let nums = [10, 20, 30, 40];
+let idx = nums.findIndex(n => n > 25);
+console.log(idx);   // 2
+
+// some --------------------------------------------
+let nums = [1, 2, 3];
+console.log(nums.some(n => n > 2));   // true
+console.log(nums.some(n => n > 10));  // false
+
+// every --------------------------------------------git 
+let nums = [1, 2, 3];
+console.log(nums.every(n => n > 0));   // true
+console.log(nums.every(n => n > 2));   // false
 
 
