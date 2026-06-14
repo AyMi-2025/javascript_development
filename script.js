@@ -327,9 +327,48 @@ let nums = [1, 2, 3];
 console.log(nums.some(n => n > 2));   // true
 console.log(nums.some(n => n > 10));  // false
 
-// every --------------------------------------------git 
+// every -------------------------------------------- 
 let nums = [1, 2, 3];
 console.log(nums.every(n => n > 0));   // true
 console.log(nums.every(n => n > 2));   // false
 
+/* =================================================
+          Objects
+   ================================================= */
+
+let person = {
+    name: "Aman",
+    age: 25,
+    city: "Bhopal",
+    isStudent: true
+};
+
+// Print --------------------------------------------------
+
+// Dot notation (preferred)
+console.log(person.name);   // "Aman"
+
+// Bracket notation
+console.log(person["name"]);   // "Aman"
+
+let person = { name: "Aman", age: 25 };
+
+// Add --------------------------------------
+person.city = "Bhopal";
+person["country"] = "India";
+
+// Update ----------------------------------------
+person.age = 26;
+
+// Delete ----------------------------------------------
+delete person.city;
+
+console.log(person);
+// { name: "Aman", age: 26, country: "India" }
+
+// Seal ------------------------------------------
+Object.seal(user)
+
+// Freeze --------------------------------------------
+Object.freeze(user)
 
