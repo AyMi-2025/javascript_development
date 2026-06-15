@@ -372,3 +372,8 @@ Object.seal(user)
 // Freeze --------------------------------------------
 Object.freeze(user)
 
+// Destructuring ------------------------------------
+let person = { name: "Aman", age: 25, city: "Bhopal" };
+
+let { name, age } = person;
+console.log(name, age);   // "Aman" 25
