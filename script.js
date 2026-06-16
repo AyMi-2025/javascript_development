@@ -584,5 +584,233 @@ Every recursive function **must** have a base case that stops the recursion, oth
 
 ---------------------------------------------------------------------------------------------------------------
 
+## 5. Hoisting
 
+Hoisting is JS's behaviour of *appearing* to move declarations to the top of their scope. **Important:** nothing physically moves — this is just the **Creation Phase** allocating memory before the code runs.
+
+### `var` hoisting (initialized as `undefined`)
+
+`var` declarations are hoisted and set to `undefined`. So you can access them before the line they're written on — you just get `undefined`, not an error.
+
+```jsx
+console.log(a); // undefined  (not an error!)
+var a = 5;
+console.log(a); // 5
+```
+
+### `let` and `const` hoisting — the Temporal Dead Zone (TDZ)
+
+`let` and `const` **are** hoisted too — but they are **not** initialized. From the start of the scope until the line they're declared on, they sit in the **Temporal Dead Zone (TDZ)**. Accessing them there throws an error.
+
+```jsx
+console.log(b); // ❌ ReferenceError: Cannot access 'b' before initialization
+let b = 10;
+```
+
+| Keyword | Hoisted? | Initial value before declaration | Accessing early gives |
+| --- | --- | --- | --- |
+| `var` | Yes | `undefined` | `undefined` |
+| `let` | Yes | none (TDZ) | ReferenceError |
+| `const` | Yes | none (TDZ) | ReferenceError |
+
+### Function declarations vs function expressions
+
+This difference catches a lot of people.
+
+**Function declaration → fully hoisted.** You can call it before it's defined:
+
+```jsx
+sayHi(); // ✅ "Hi" — works
+function sayHi() {
+  console.log("Hi");
+}
+```
+
+**Function expression → follows the variable's hoisting rules.** The variable is hoisted, but the function is *not* assigned until that line runs:
+
+```jsx
+sayBye(); // ❌ TypeError: sayBye is not a function
+var sayBye = function () {
+  console.log("Bye");
+};
+```
+
+Here `sayBye` is hoisted as `undefined` (because of `var`), so calling `undefined()` throws a TypeError. With `let`/`const` it would throw a ReferenceError (TDZ) instead.
+
+> 🔑 **Rule of thumb:** declarations are hoisted with their *body*; expressions are hoisted only as a *variable*.
+> 
+
+-----------------------------------------------------------------------------------
+
+## 6. Scope
+
+**Scope** = the region of code where a variable is accessible.
+
+### Global scope
+
+Declared outside any function/block. Accessible everywhere.
+
+```jsx
+let appName = "MyApp"; // global
+function show() {
+  console.log(appName); // ✅ accessible
+}
+```
+
+### Function scope
+
+Variables declared inside a function are only visible inside that function. `var`, `let`, and `const` are all function-scoped when declared inside a function.
+
+```jsx
+function test() {
+  var secret = 42;
+}
+console.log(secret); // ❌ ReferenceError — not visible outside
+```
+
+### Block scope
+
+A block is anything inside `{ }` (if, for, while, or a plain block). `let` and `const` are **block-scoped**. `var` is **NOT** — `var` ignores blocks.
+
+```jsx
+{
+  let a = 1;
+  var b = 2;
+}
+console.log(b); // 2  (var leaked out of the block)
+console.log(a); // ❌ ReferenceError (let stayed inside)
+```
+
+### Lexical scope — what does "lexical" really mean?
+
+**Lexical** means "based on where the code is *physically written*", not where or how it's called. A function's scope is decided by its **location in the source code** at the time you write it — not at runtime.
+
+```jsx
+function outer() {
+  let name = "Sara";
+  function inner() {
+    console.log(name); // inner can "see" outer's variables — because of where it's written
+  }
+  inner();
+}
+outer(); // "Sara"
+```
+
+`inner` is written *inside* `outer`, so it has access to `outer`'s variables. This physical nesting is "lexical scoping".
+
+----------------------------------------------------------------------------------------
+
+## 7. The Scope Chain — how JS looks up variables
+
+When you use a variable, JS looks for it in this order:
+
+1. The **current** scope.
+2. If not found, the **parent (outer)** scope.
+3. Then the parent's parent... and so on, all the way up to the **global** scope.
+4. If it's nowhere → `ReferenceError`.
+
+This chain of "look outward until you find it" is the **Scope Chain**. It only goes **outward/upward**, never inward.
+
+```jsx
+let a = 10;
+function outer() {
+  let b = 20;
+  function inner() {
+    let c = 30;
+    console.log(a, b, c); // 10 20 30
+  }
+  inner();
+}
+outer();
+```
+
+- `inner` finds `c` in itself.
+- `b` is found in its parent (`outer`).
+- `a` is found in the global scope.
+
+But the reverse is impossible — `outer` can never access `c`, because `c` lives in a deeper (inner) scope. The chain is **one-directional**.
+
+-------------------------------------------------------------------------------------
+
+## 8. Closures 🧠 (the star of this phase)
+
+### What is a closure? (the real definition)
+
+A **closure** is a function bundled together with its surrounding **lexical environment**. In plain words: a function **remembers the variables from the scope where it was created**, even after that outer scope has finished executing.
+
+**Analogy:** a closure is like a backpack. When a function is created, it packs a backpack of all the variables around it. Wherever that function travels later, it carries the backpack — so it can still use those variables.
+
+### Step-by-step trace of how a closure works
+
+```jsx
+function counter() {
+  let count = 0;            // (1) local variable
+  return function () {      // (2) inner function is returned
+    count++;
+    return count;
+  };
+}
+
+const inc = counter();      // (3) counter() runs and finishes
+console.log(inc()); // 1    // (4)
+console.log(inc()); // 2    // (5)
+console.log(inc()); // 3    // (6)
+```
+
+**What actually happens:**
+
+1. `counter()` is called → a new execution context is created with `count = 0`.
+2. It returns the inner function. Normally, when `counter()` finishes, its context (and `count`) would be destroyed.
+3. **But** the returned inner function still references `count`. So JS keeps `count` alive in memory — this preserved bundle is the closure.
+4. Each call to `inc()` reaches into the *same* preserved `count` and increments it → 1, 2, 3.
+
+The `count` variable is now **private** — nothing outside can touch it directly. That's the magic.
+
+### Practical use cases
+
+**1. Data privacy (private variables)**
+
+```jsx
+function createBankAccount() {
+  let balance = 0; // private — cannot be accessed directly
+  return {
+    deposit(amount) { balance += amount; return balance; },
+    getBalance() { return balance; }
+  };
+}
+const acc = createBankAccount();
+acc.deposit(100);
+console.log(acc.getBalance()); // 100
+console.log(acc.balance);      // undefined — truly private
+```
+
+**2. Function factories**
+A function that builds and returns customized functions.
+
+```jsx
+function multiplier(factor) {
+  return function (number) {
+    return number * factor;
+  };
+}
+const double = multiplier(2);
+const triple = multiplier(3);
+console.log(double(5)); // 10
+console.log(triple(5)); // 15
+```
+
+**3. Counters** — see the `counter()` example above. Each counter keeps its own independent count.
+
+**4. Currying** — transforming a function with many arguments into a chain of functions each taking one argument.
+
+```jsx
+function add(a) {
+  return function (b) {
+    return function (c) {
+      return a + b + c;
+    };
+  };
+}
+console.log(add(1)(2)(3)); // 6
+```
 */
