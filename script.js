@@ -814,3 +814,11 @@ function add(a) {
 console.log(add(1)(2)(3)); // 6
 ```
 */
+
+/* =================================================
+          Errors in JS
+   ================================================= */
+
+// typeError
+// syntaxError
+// referenceError
