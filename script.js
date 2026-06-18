@@ -822,3 +822,83 @@ console.log(add(1)(2)(3)); // 6
 // typeError
 // syntaxError
 // referenceError
+
+/* =================================================
+          Explicit Binding 
+   ================================================= */
+
+// call() ----------------------------------
+var student1 = {
+  firstName: 'Sarthak',
+  lastName: 'Sharma',
+  getIntro: function(){
+    console.log(this.firstName + " " + this .lastName)
+  }
+}
+
+var student2 = {
+  firstName: 'Rahul',
+  lastName: 'Kumar'
+}
+
+student1.getIntro.call(student2)
+
+// apply() ----------------------------------------
+  student.getIntro.apply(student2 ,["Jaipur" , "(Raj)"])
+
+// bind() ----------------------------------------
+  var out = student.getIntro.bind(student2 ,"Jaipur" , "(Raj)")
+  out()
+
+/* =================================================
+          Phototypes 
+   =================================================*/
+
+console.log(Array.prototype);
+console.log(Object.prototype);
+console.log(Function.prototype);
+
+// Array ---> Array ---> Object ---> Null
+// Object ---> Object ---> Object ---> Null
+// Function ---> Function ---> Object ---> Null
+
+function person(name) {
+  this.name = name;
+}
+
+const p = new person('Rahul');
+console.log(p.__proto__ == person.prototype)
+
+/* =================================================
+          Phototyping Chaining
+   =================================================*/
+
+  var college = {
+    name: "IIT Bombay",
+    rating: "A++",
+    students: 5000,
+    saySlogan: function() {
+      console.log("We are IIT")
+    }
+  }
+
+  var branch = {
+    name: "CSE",
+    rating: "A++",
+    students: 500,
+    subjects = ["TOC", "SD" , "CD"]
+  }
+
+    var user = {
+    name: "Raja",
+    age: 30,
+    marks: 98
+  }
+
+  user.__proto__ = branch
+  branch.__proto__= college
+
+  console.log(user.subjects);
+  
+
+
