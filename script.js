@@ -899,6 +899,41 @@ console.log(p.__proto__ == person.prototype)
   branch.__proto__= college
 
   console.log(user.subjects);
-  
 
+  /* =================================================
+          Function Constructor
+   =================================================*/
+  function CreateBook (bookName, authorName, pages){
+    this.bookName = bookName
+    this.authorName = authorName
+    this.pages = pages
+    this.getfrontPage = function(){
+      console.log("Book Name : ", this.bookName)
+      console.log("Author Name : ", this.authorName);
+      console.log("Pages : " , this.pages);
+    }
+  }
+
+  let book1 = new CreateBook("Harry Potter", "JK Rowling", 760)
+
+/* =================================================
+          Class Functions
+   =================================================*/
+   class MakeStudents{
+    constructor(fname, lname, contact, isVerified){
+      this.fname = fname
+      this.lname = lname
+      this.contact = contact
+      this.isVerified = isVerified
+    }
+
+    showProfile = function () {
+      if(this.isVerified){
+        console.log(`Name: ${this.fname} ${this.lname}`);
+      }else{
+        console.log("Not Verified");
+        
+      }
+    }
+   }
 
