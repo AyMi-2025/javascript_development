@@ -937,3 +937,9 @@ console.log(p.__proto__ == person.prototype)
     }
    }
 
+/* =================================================
+          setTimeout -------> delay
+   =================================================*/
+setTimeout(function() {
+  console.log("2");
+}, 2000) // Delay Hoga 2 sec ka
