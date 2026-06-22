@@ -944,3 +944,16 @@ setTimeout(function() {
   console.log("2");
 }, 2000) // Delay Hoga 2 sec ka
 
+
+/* =================================================
+          Creating Promises
+   =================================================*/
+let p = new Promise(function(resolve, reject){
+  let val = true
+  if(val){
+    console.log("Success");
+  }else{
+   console.log("Failure");
+  }
+})
+
