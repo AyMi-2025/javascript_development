@@ -957,3 +957,28 @@ let p = new Promise(function(resolve, reject){
   }
 })
 
+/* =================================================
+          Then, Catch and Finally
+   =================================================*/
+// Promise ka result lene ke liye hum **`.then()`**, **`.catch()`** aur **`.finally()`** lagaate hain.
+
+// - **`.then(callback)`** — promise `fulfilled` hone par chalta hai, result deta hai.
+// - **`.catch(callback)`** — promise `rejected` hone par chalta hai, error deta hai.
+// - **`.finally(callback)`** — promise settle hone par hamesha chalta hai (chahe success ho ya fail). Cleanup ke liye useful (jaise loading spinner band karna).
+
+dataLao()
+  .then((data) => {
+    console.log("Success:", data);
+  })
+  .catch((error) => {
+    console.log("Error:", error);
+  })
+  .finally(() => {
+    console.log("Kaam khatam (chahe pass ho ya fail)");
+  });
+
+// Data laa raha hoon...
+// (2 sec baad)
+// Success: { id: 1, naam: 'Aman' }
+// Kaam khatam (chahe pass ho ya fail)
+
