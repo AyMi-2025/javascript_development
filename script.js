@@ -982,3 +982,29 @@ dataLao()
 // Success: { id: 1, naam: 'Aman' }
 // Kaam khatam (chahe pass ho ya fail)
 
+/* =================================================
+          Promise Chaining
+   =================================================*/
+function add(num) {
+  return new Promise((resolve) => {
+    setTimeout(() => resolve(num + 10), 1000);
+  });
+}
+
+add(0)
+  .then((result) => {
+    console.log(result); // 10
+    return add(result);  // naya promise return kiya
+  })
+  .then((result) => {
+    console.log(result); // 20
+    return add(result);
+  })
+  .then((result) => {
+    console.log(result); // 30
+  });
+
+// (1s) 10
+// (2s) 20
+// (3s) 30
+
