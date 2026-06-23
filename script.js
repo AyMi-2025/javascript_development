@@ -1032,3 +1032,28 @@ main();
 // Data aa gaya 📦
 // End
 
+/* =================================================
+          Try & Catch
+   =================================================*/
+function dataLao() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => reject("Server down! 😵"), 1000);
+  });
+}
+
+async function main() {
+  try {
+    const data = await dataLao();
+    console.log("Success:", data);
+  } catch (error) {
+    console.log("Error pakda:", error); // Error pakda: Server down! 😵
+  } finally {
+    console.log("Cleanup ho gaya");
+  }
+}
+
+main();
+
+// (1 sec baad)
+// Error pakda: Server down! 😵
+// Cleanup ho gaya
